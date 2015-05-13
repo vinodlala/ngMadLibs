@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <title>ngMadLibs</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script data-require="angular.js@1.3.10" data-semver="1.3.10"
+            src="https://code.angularjs.org/1.3.10/angular.js"></script>
+    <script src="script.js"></script>
+</head>
+<body ng-app="myApp"
+      ng-init="maleName='Male Name'; jobTitle='Job Title'; tediousTask='Tedious Task';
+               dirtyTask='Dirty Task'; celebrity='Celebrity'; uselessSkill='Useless Skill';
+              adjective='Adjective'; obnoxiousCelebrity='Obnoxious Celebrity'; hugeNumber='Huge Number';">
+
+
+<div>
+    <div><img src="images/mad-lib-happy-face.png"></img></div>
+    <div><img src="images/ng-mad-libs-logo.png"></img></div>
+    <div>Automate This!</div>
+    <div>Provide the following words:</div>
+    <div>
+        <div class="userInput"><input type="text" ng-model="maleName"></input></div>
+        <div class="userInput"><input type="text" ng-model="jobTitle"></input></div>
+        <div class="userInput"><input type="text" ng-model="tediousTask"></input></div>
+    </div>
+    <div>
+        <div class="userInput"><input type="text" ng-model="dirtyTask"></input></div>
+        <div class="userInput"><input type="text" ng-model="celebrity"></input></div>
+        <div class="userInput"><input type="text" ng-model="uselessSkill"></input></div>
+    </div>
+    <div>
+        <div class="userInput"><input type="text" ng-model="adjective"></input></div>
+        <div class="userInput"><input type="text" ng-model="obnoxiousCelebrity"></input></div>
+        <div class="userInput"><input type="text" ng-model="hugeNumber"></input></div>
+    </div>
+    <div>
+        <div>
+            <p><span>{{maleName}}</span> was a <span>{{jobTitle}}</span> who loved technology. Although he loved
+            parts of his job, he absolutely hated <span>{{tediousTask}}</span> and <span>{{dirtyTask}}</span>. So,
+            <span>{{maleName}}</span> met with his life mentor <span>{{celebrity}}</span> who told him to learn how to
+            do <span>{{uselessSkill}}</span> with Thinkful. Thinkful didn't offer a course about
+            <span>{{uselessSkill}}</span> so he studied programming instead.</p>
+            <p>What a great decision! With his new skills, <span>{{maleName}}</span> built a(n)
+                <span>{{adjective}}</span> robot named <span>{{obnoxiousCelebrity}}</span> that not only loved <span>{{dirtyTask}}</span>
+                but did it <span class="blank">{{hugeNumber}}</span> times faster.</p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
