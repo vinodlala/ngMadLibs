@@ -1,4 +1,4 @@
 angular.module('myApp', [])
-    .controller("ngMadLibsController", ['$scope'], function($scope) {
+    .controller("MyCtrl", function($scope) {
 
     });
