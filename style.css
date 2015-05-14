@@ -69,9 +69,18 @@ body {
     text-align: center;
 }
 
+.user-input-radio {
+    text-align: left;
+}
+
 .user-output {
     text-decoration: underline;
 }
 .automate {
     font-size: xx-large;
+}
+
+.error {
+    color: red;
+    text-align: center;
 }

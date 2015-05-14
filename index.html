@@ -1,8 +1,9 @@
 <!doctype html>
 <html ng-app="myApp"
-      ng-init="firstName='First Name'; jobTitle='Job Title'; tediousTask='Tedious Task';
-               dirtyTask='Dirty Task'; celebrity='Celebrity'; uselessSkill='Useless Skill';
-               adjective='Adjective'; obnoxiousCelebrity='Obnoxious Celebrity'; hugeNumber='Huge Number';">
+      ng-init="gender='';
+               firstName=''; jobTitle=''; tediousTask='';
+               dirtyTask=''; celebrity=''; uselessSkill='';
+               adjective=''; obnoxiousCelebrity=''; hugeNumber='';">
 <head>
     <meta charset="UTF-8">
     <title>ngMadLibs</title>
@@ -11,6 +12,7 @@
 
     <script data-require="angular.js@1.3.10" data-semver="1.3.10"
             src="https://code.angularjs.org/1.3.10/angular.js"></script>
+    <script src="angular-messages.js"></script>
     <script src="script.js"></script>
 </head>
 
@@ -29,35 +31,94 @@
         <div class="clear"></div>
     </div>
 
-    <div class="box input">
-        <div class="center">Pick a gender:</div>
-        <div class="center">
-            <select class="user-input" ng-model="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-        </div>
+    <div class="box input" ng-hide="switchToOutput">
 
-        <div class="center">Provide the following words:</div>
-        <div class="inputs-column-left">
-            <div class="user-input"><input class="user-input" type="text" ng-model="firstName"></input></div>
-            <div class="user-input"><input class="user-input" type="text" ng-model="jobTitle"></input></div>
-            <div class="user-input"><input class="user-input" type="text" ng-model="tediousTask"></input></div>
+        <form ng-submit="submit()" name="myForm" novalidate>
+
+            <div class="center">Pick a gender:</div>
+            <div class="clear"></div>
+
+            <div class="center">
+                <div class="user-input">
+                    <input type="radio" name="gender" ng-model="gender" value="Female" checked required>Female</input>
+                </div>
+                <div class="user-input">
+                    <input type="radio" name="gender" ng-model="gender" value="Male" required>Male</input>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+            <div class="center">Provide the following words and number:</div>
+            <div class="inputs-column-left">
+                <div class="user-input">
+                    <input class="user-input" type="text" ng-model="firstName" placeholder="First Name"
+                           ng-minlength="2" required></input>
+                </div>
+                <div class="user-input">
+                    <input class="user-input" type="text" ng-model="jobTitle" placeholder="Job Title"
+                           ng-minlength="2" required></input>
+                </div>
+                <div class="user-input">
+                    <input required class="user-input" type="text" ng-model="tediousTask" placeholder="Tedious Task"
+                           ng-minlength="2" required></input>
+                </div>
+            </div>
+            <div class="inputs-column-center">
+                <div class="user-input">
+                    <input required class="user-input" type="text" ng-model="dirtyTask" placeholder="Dirty Task"
+                           ng-minlength="2" required></input>
+                </div>
+                <div class="user-input">
+                    <input required class="user-input" type="text" ng-model="celebrity" placeholder="Celebrity"
+                           ng-minlength="2" required></input>
+                </div>
+                <div class="user-input">
+                    <input required class="user-input" type="text" ng-model="uselessSkill" placeholder="Useless Skill"
+                           ng-minlength="2" required></input>
+                </div>
+            </div>
+            <div class="inputs-column-right">
+                <div class="user-input">
+                    <input required class="user-input" type="text" ng-model="adjective" placeholder="Adjective"
+                           ng-minlength="2" required></input>
+                </div>
+                <div class="user-input">
+                    <input required class="user-input" type="text" ng-model="obnoxiousCelebrity"
+                           placeholder="Obnoxious Celebrity"
+                           ng-minlength="2" required></input>
+                </div>
+                <div class="user-input">
+                    <input required class="user-input" type="number" ng-model="hugeNumber" placeholder="Huge Number"
+                           ng-minlength="2" required></input>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+
+
+            <div class="inputs-column-right">
+                <div class="user-input">
+                    <input class="user-input" type="submit" id="submit" value="Generate My Mad Lib"
+                           ng-click="generateMadLib()"></input>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+
+        </form>
+
+        <div class="inputs-column-left">&nbsp;</div>
+        <div class="inputs-column-center center" ng-if="myForm.$submitted" ng-messages="myForm.$error">
+            <span class="error" ng-message="required">All fields must be filled out, including gender.</span>
+            <span class="error" ng-message="minlength">Each field must be at least two characters long.</span>
+            <span class="error" ng-message="number">The last field must be a number.</span>
         </div>
-        <div class="inputs-column-center">
-            <div class="user-input"><input class="user-input" type="text" ng-model="dirtyTask"></input></div>
-            <div class="user-input"><input class="user-input" type="text" ng-model="celebrity"></input></div>
-            <div class="user-input"><input class="user-input" type="text" ng-model="uselessSkill"></input></div>
-        </div>
-        <div class="inputs-column-right">
-            <div class="user-input"><input class="user-input" type="text" ng-model="adjective"></input></div>
-            <div class="user-input"><input class="user-input" type="text" ng-model="obnoxiousCelebrity"></input></div>
-            <div class="user-input"><input class="user-input" type="text" ng-model="hugeNumber"></input></div>
-        </div>
+        <div class="inputs-column-right">&nbsp;</div>
+
     </div>
 
-    <div class="box output">
-        <p><span class="user-output">{{firstName}}</span> was a
+    <div class="box output" ng-show="switchToOutput">
+        <p><span class="user-output">{{firstName}}</span> was a(n)
             <span class="user-output">{{jobTitle}}</span> who loved technology. Although
             {{ gender == 'Male' ? 'he' : 'she' }} loved parts of
             {{ gender == 'Male' ? 'his' : 'her' }} job,
@@ -81,9 +142,16 @@
             <span class="user-output">{{dirtyTask}}</span> but did it
             <span class="user-output">{{hugeNumber | number}}</span> times faster.
         </p>
-    </div>
-</div>
 
+        <div class="inputs-column-right">
+            <div class="user-input">
+                <input class="user-input" type="submit" id="submit" value="Start Over" ng-click="startOver()"></input>
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
