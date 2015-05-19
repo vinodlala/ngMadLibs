@@ -84,3 +84,63 @@ body {
     color: red;
     text-align: center;
 }
+
+.input.ng-hide-add,
+.input.ng-hide-remove {
+    transition: all linear 2s;
+}
+
+.input.ng-hide-add {
+    opacity: 1;
+    /*max-height: 1em;*/
+}
+
+.input.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+    /*max-height: 0;*/
+}
+
+.input.ng-hide-remove {
+    opacity: 0;
+    /*max-height: 0;*/
+}
+
+.input.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+    /*max-height: 1em;*/
+}
+
+
+
+.output.ng-hide-add,
+.output.ng-hide-remove {
+    transition: all linear 2s;
+}
+
+.output.ng-hide-add {
+    opacity: 1;
+    /*max-height: 1em;*/
+}
+
+.output.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+    /*max-height: 0;*/
+}
+
+.output.ng-hide-remove {
+    opacity: 0;
+    /*max-height: 0;*/
+}
+
+.output.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+    /*max-height: 1em;*/
+}
+
+/*.input.ng-hide-stagger {*/
+    /*transition-delay: 2s;*/
+/*}*/
+
+/*.output.ng-hide-stagger {*/
+    /*transition-delay: 2s;*/
+/*}*/
